@@ -156,8 +156,8 @@ mob/proc/StripperStatBoost()
 		view()<<"[usr]'s interest is falling away from the Stripper!"
 		usr.removeGenAddOn("StripperBoost")
 		usr.removeNinAddOn("StripperBoost")
-		usr.removeTaiAddOn("StripperBoost") */
-/*
+		usr.removeTaiAddOn("StripperBoost") 
+
 mob/proc/Pachinko()
 	var
 		SmallRoll
@@ -188,7 +188,7 @@ mob/proc/Pachinko()
 		usr.BetAmount = 100
 		usr <<"The minimum bet is 100; Your bet has been set at 100 RYO!"
 
-	/*	switch(usr.Village)
+		switch(usr.Village)
 		if("Leaf")
 			LeafVillagePool+=100
 		if("Rain")
