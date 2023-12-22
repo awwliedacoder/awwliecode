@@ -133,7 +133,7 @@ mob/GainedAfterLogIn/verb
 						return
 			if("No")
 				return
-/*
+
 mob/proc/StripperStatBoost()
 	if(usr.Age<18)
 		view()<<"<b>[usr] was kicked away from the club for being too young!!"
@@ -264,7 +264,7 @@ mob/GameMachines/
 				usr<<"You need to be facing machine!";return
 			sleep(3)
 			usr.Pachinko()
-*/
+
 
 mob/Admin/verb/ModifyDoorValue()
 	set name = "Modify Value oF Door"
