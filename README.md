@@ -18,7 +18,7 @@ Bunch of different small systems I've wrote for the game of Rikudo No Ninshu in 
   
 ### Pachinko
 
-- Intended to be a money sink, Pachinko is a system I desinged to be equal to Japanese Pachinko where you have a lot of metal balls running down the machine. It goes through the rolls in a forloop, to see if you lose or win, and then inputs said values to the HTML.
+- Intended to be a money sink, Pachinko is a system I designed to be equal to Japanese Pachinko where you have a lot of metal balls running down the machine. It goes through the rolls in a for-loop, to see if you lose or win, and then inputs said values to the HTML.
 
 ### ChakraKunaiStealThing
 
