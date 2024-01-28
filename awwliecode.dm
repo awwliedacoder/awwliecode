@@ -158,56 +158,67 @@ mob/proc/StripperStatBoost()
 		usr.removeNinAddOn("StripperBoost")
 		usr.removeTaiAddOn("StripperBoost") 
 
+
 mob/proc/Pachinko()
 	var
 		SmallRoll
 		BigRoll
 		MegaRoll
 		LossRoll
-
-	var/html = "<html> <title>Pachinko Machine</title> <body bgcolor=black text=#CCCCCC link=white vlink=white alink=white></html>"
+		html = "<html> <title>Pachinko Machine</title> <body bgcolor=black text=#CCCCCC link=white vlink=white alink=white></html>"
+	
 	html += "<h1 align=center>[usr]'s Pachinko Machine!</h1>"
-
 
 	if(usr.Age<18)
 		view()<<"[usr] is too young to play the Pachinko machine!"
 		usr.Yen-=100
 		return;
+	
 	if(usr.Yen<100)
 		view()<<"[usr] puts [usr.Yen] ryo in machine, but it does not start!"
 		usr.Yen-=usr.Yen
 		return;
 
-	usr.BetAmount = input("Bet amount", "How much") as num
-	if(usr.Yen<usr.BetAmount)
+	usr.BetAmount = input("Bet amount", "How much do you want to bet?") as num
+	if(usr.Yen < usr.BetAmount)
 		usr <<"You cannot go in to debt!"
 		return;
 
 
-	if(usr.BetAmount < 100)
-		usr.BetAmount = 100
-		usr <<"The minimum bet is 100; Your bet has been set at 100 RYO!"
-
+	if(usr.BetAmount < 200)
+		if(usr.BetAmount % 100 == 0)
+			goto PassedCheck
+		else
+			view(src) <<"*Bzz* The machine prints out a screen saying you need to put in whole numbers."
+			return;
+		
+		PassedCheck	
+		usr.BetAmount = 200
+		usr <<"The minimum bet is 200; Your bet has been set to 200 RYO!"
+		//Here we give money to the Village so that it is useful.
 		switch(usr.Village)
-		if("Leaf")
-			LeafVillagePool+=100
-		if("Rain")
-			RainVillagePool+=100
-		if("Rock")
-			RockVillagePool+=100
-		if("Sound")
-			SoundVillagePool+=100
-		if("Sand")
-			SandVillagePool+=100
-		if("Cloud")
-			CloudVillagePool+=100
+			if("Leaf")
+				LeafVillagePool+=100
+			if("Rain")
+				RainVillagePool+=100
+			if("Rock")
+				RockVillagePool+=100
+			if("Sound")
+				SoundVillagePool+=100
+			if("Sand")
+				SandVillagePool+=100
+			if("Cloud")
+				CloudVillagePool+=100
 
-	html += "<p align=center>The Machine takes 100 ryo as donation!</p>" 
+	html += "<p align=center>The Machine takes 100 ryo as donation!</p>"
+
 	if(usr.BetAmount >= 10000)
 		usr <<"The maximum bet is 10000 ryo at a time!"
 		return
 	usr.HowMuchLost -= usr.BetAmount
+	
 	usr.Yen -= usr.BetAmount
+	usr.BetAmount-=100 // for the donation earlier, so that they only get one roll.
 
 
 	usr <<"The machine begins to roll balls!!"
