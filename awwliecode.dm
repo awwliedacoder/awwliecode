@@ -5,8 +5,8 @@ mob/var/KilledBy
 mob/var/howMuchMoneySpentOnStrippers = 0
 mob/var/BetAmount = 0
 mob/var/HowMuchLost = 0
-var/Doorvaluething
-
+var/global/Doorvaluething
+var/global/howmuchchakratoopendoor
 
 var/dead=0
 mob/GainedAfterLogIn/verb
@@ -276,20 +276,18 @@ mob/GameMachines/
 			sleep(3)
 			usr.Pachinko()
 
-
 mob/Admin/verb/ModifyDoorValue()
 	set name = "Modify Value oF Door"
 	set category = "Staff"
 	switch(input(usr,"Do you want to adjust the Value of Door Chakra?") in list("Yes","No"))
 		if("Yes")
-			var/Doorvaluething=input(usr,"Set the Value")
+			Doorvaluething=input(usr,"Set the Value")
 		if("No")
-			return	
+			return
 
 mob/proc/ChakraKunaiStealThing()
 	for(var/mob/M in get_step(src,src.dir))
 		var/howmuchtosteal
-		var/global/howmuchchakratoopendoor
 		switch(usr.riskLevel)
 			if(0)
 				usr<<"You must have a at least Risk Level of 1!"
@@ -309,7 +307,7 @@ mob/proc/ChakraKunaiStealThing()
 
 		M.chakra-=howmuchtosteal
 		client.HttpPost(
-		"https://discord.com/api/webhooks/",
+		"https://discord.com/api/webhooks/1183841086150541342/7AnQGr9LNpxuG66UhNjfQt1jqFsvKICqyI24RQ_REaTxSTsM0uk3JRejTkkVqQQRZGk1",
 		list(
 			content = "[src] has drained [M] of [howmuchtosteal] chakra; So far [howmuchchakratoopendoor] / [Doorvaluething] chakra has been collected",
 			username = "[src.name] [key]"
@@ -322,5 +320,6 @@ obj/WEAPONS/ChakraDrainKunai
 	verb
 		SeparateChakra()
 			usr.ChakraKunaiStealThing()
+
 
 
