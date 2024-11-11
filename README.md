@@ -31,3 +31,7 @@ Bunch of different small systems I've wrote for the game of Rikudo No Ninshu in 
 ### <b>Trade Pack Mission </b> 
 - A mission type that has the player carry out an Trade Pack towards to a X location.
 - An criminal can steal said package, and bring it to a theives guild..
+
+### <b> Awwlie Injury system </b>
+- Injuries are objects, that when detected on the character during login phase, apply a debuff related to them.
+- Injuries are healed when the character is logged, and the time to heal is smaller than the current time.
