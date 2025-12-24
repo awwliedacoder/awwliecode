@@ -1,0 +1,33 @@
+proc/CapitalizeFirstLetter(text)
+	var/result = ""
+	var/found = FALSE
+
+	for(var/i = 1, i <= length(text), i++)
+		var/char = copytext(text, i, i+1)
+		if(!found && istext(char))
+			char = uppertext(char)
+			found = TRUE
+		result += char
+
+	return result
+
+
+proc/findFirstLetter(text)
+	for(var/i = 1, i <= length(text), i++)
+		var/char = copytext(text, i, i+1)
+		if(text2ascii(" ") != text2ascii(char))
+			var/newString = copytext(text, i, length(text) + 1)
+			return newString
+
+proc/is_hex_color(str as text)
+	if (copytext(str, 1, 2) != "#")
+		return FALSE
+	if (length(str) != 7)
+		return FALSE
+
+	for (var/i = 2, i <= length(str), i++)
+		var/ch = copytext(str, i, i+1)
+		if (!(ch in list("0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","a","b","c","d","e","f")))
+			world << "t??"
+			return FALSE
+	return TRUE
